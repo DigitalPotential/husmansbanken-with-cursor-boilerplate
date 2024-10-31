@@ -14,6 +14,7 @@ beforeAll((done) => {
 });
 
 afterAll((done) => {
+  prisma.$disconnect(); // Stäng Prisma-anslutningen
   server.close(() => {
     console.log('Test server closed');
     done();
