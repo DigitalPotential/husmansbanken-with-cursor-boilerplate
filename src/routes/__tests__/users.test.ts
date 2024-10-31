@@ -1,6 +1,23 @@
 import request from 'supertest';
 import app from '../../index.js';
 import prisma from '../../db/prisma.js';
+import { Server } from 'http';
+
+let server: Server
+
+beforeAll((done) => {
+  server = app.listen(3000, () => {
+    console.log('Test server running on port 3000');
+    done();
+  });
+});
+
+afterAll((done) => {
+  server.close(() => {
+    console.log('Test server closed');
+    done();
+  });
+});
 
 jest.mock('../../db/prisma.js', () => ({
   user: {
