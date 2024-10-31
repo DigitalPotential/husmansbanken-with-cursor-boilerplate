@@ -3,11 +3,12 @@ import app from '../../index.js';
 import prisma from '../../db/prisma.js';
 import { Server } from 'http';
 
-let server: Server
+let server: Server;
+const PORT = 0; // Låter operativsystemet välja en ledig port
 
 beforeAll((done) => {
-  server = app.listen(3000, () => {
-    console.log('Test server running on port 3000');
+  server = app.listen(PORT, () => {
+    console.log(`Test server running on port ${(server.address() as any).port}`);
     done();
   });
 });
