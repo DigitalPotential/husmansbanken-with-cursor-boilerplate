@@ -1,25 +1,6 @@
 import request from 'supertest';
 import app from '../../index.js';
 import prisma from '../../db/prisma.js';
-import { Server } from 'http';
-
-let server: Server;
-const PORT = 0; // Låter operativsystemet välja en ledig port
-
-beforeAll((done) => {
-  server = app.listen(PORT, () => {
-    console.log(`Test server running on port ${(server.address() as any).port}`);
-    done();
-  });
-});
-
-afterAll((done) => {
-  prisma.$disconnect(); // Stäng Prisma-anslutningen
-  server.close(() => {
-    console.log('Test server closed');
-    done();
-  });
-});
 
 jest.mock('../../db/prisma.js', () => ({
   user: {
