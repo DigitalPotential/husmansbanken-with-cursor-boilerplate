@@ -48,7 +48,7 @@ jobs:
 
       # 4. Kör tester
       - name: Run tests
-        run: npm test
+        run: npm test -- --detectOpenHandles
 
       # 5. Databas migrering
       - name: Run database migrations
