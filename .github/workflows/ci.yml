@@ -32,7 +32,36 @@ jobs:
     - run: npm run build --if-present
     - run: npm run test
     - run: npm run test:watch
-    - run: npm run prisma:migrate
-    - run: prisma generate
-    - run: npm run format
     
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+
+  database:
+    needs: build
+    if: github.ref == 'refs/heads/main' # Kör bara på main branch
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    - run: npm ci
+    - name: Apply database migrations
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      run: |
+        npm run prisma:migrate
+        npx prisma generate
