@@ -18,7 +18,7 @@ describe('User routes', () => {
       const mockUser = {
         id: '1',
         name: 'Test User',
-        email: 'test@example.com',
+        email: 'testexample.com',
         createdAt: '2023-01-01T00:00:00.000Z',
       };
 
