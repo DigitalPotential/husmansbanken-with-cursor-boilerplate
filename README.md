@@ -43,4 +43,4 @@ npx prisma studio
 
 ## testing workflow
 
-v2.1 protection rules adjusted
+v2.2 run workflow, protection rule typo fixed
