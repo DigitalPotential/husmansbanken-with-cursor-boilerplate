@@ -58,13 +58,13 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # # 4. Databas migrering
-      # - name: Run database migrations
-      #   run: npx prisma migrate deploy
+      # 4. Databas migrering
+      - name: Run database migrations
+        run: npx prisma migrate deploy
 
-      # 4. Databas nollställning för testmiljö
-      - name: Reset database
-        run: npx prisma migrate reset --force
+      # # 4. Databas nollställning för testmiljö
+      # - name: Reset database
+      #   run: npx prisma migrate reset --force
 
       # 5. Kör tester
       - name: Run tests
